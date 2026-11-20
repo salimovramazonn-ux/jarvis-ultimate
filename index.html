@@ -1,3 +1,177 @@
-<h1>JARVIS AI</h1>
+<!DOCTYPE html>
 
-<p>Welcome to your personal AI assistant.</p>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#050b18">
+
+<title>JARVIS AI Ultimate</title>
+
+<style>
+
+*{box-sizing:border-box}
+
+body{
+
+margin:0;background:#050b18;color:#eaf4ff;
+
+font-family:Arial,sans-serif;min-height:100vh;
+
+}
+
+header{
+
+padding:25px 20px;text-align:center;
+
+border-bottom:1px solid #12365b;
+
+}
+
+h1{color:#42c8ff;letter-spacing:4px}
+
+main{max-width:600px;margin:auto;padding:25px 18px}
+
+.panel{
+
+background:#0c1930;border:1px solid #17456a;
+
+border-radius:18px;padding:22px;margin-bottom:20px;
+
+}
+
+.status{color:#46e6c0}
+
+button{
+
+background:#087fc0;color:white;border:0;
+
+padding:14px 20px;border-radius:12px;
+
+font-size:16px;margin:5px;cursor:pointer;
+
+}
+
+input{
+
+width:100%;padding:16px;border-radius:12px;
+
+background:#101f35;color:white;
+
+border:1px solid #2876a5;font-size:16px;
+
+}
+
+#reply{white-space:pre-wrap;line-height:1.6}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>J.A.R.V.I.S</h1>
+
+<p>PERSONAL AI ASSISTANT</p>
+
+<p class="status">● SYSTEM ONLINE</p>
+
+</header>
+
+<main>
+
+<section class="panel">
+
+<h2>Welcome back</h2>
+
+<p>Your personal assistant is ready.</p>
+
+<button onclick="speak('Hello! I am Jarvis.')">🔊 Test Voice</button>
+
+<button onclick="startVoice()">🎤 Speak</button>
+
+</section>
+
+<section class="panel">
+
+<h2>AI Assistant</h2>
+
+<input id="question" placeholder="Ask Jarvis anything...">
+
+<button onclick="askJarvis()">Send</button>
+
+<div id="reply">Hello! How can I help you?</div>
+
+</section>
+
+<section class="panel">
+
+<h2>System</h2>
+
+<p>Device: iPhone</p>
+
+<p>Status: Connected</p>
+
+<p>Version: JARVIS Ultimate 1.0</p>
+
+</section>
+
+</main>
+
+<script>
+
+function speak(text){
+
+const speech=new SpeechSynthesisUtterance(text);
+
+speech.lang="en-US";
+
+speechSynthesis.speak(speech);
+
+}
+
+function startVoice(){
+
+const Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
+
+if(!Speech){alert("Voice recognition is not supported.");return;}
+
+const rec=new Speech();
+
+rec.lang="en-US";
+
+rec.onresult=e=>{
+
+document.getElementById("question").value=e.results[0][0].transcript;
+
+askJarvis();
+
+};
+
+rec.start();
+
+}
+
+function askJarvis(){
+
+const q=document.getElementById("question").value.trim();
+
+if(!q)return;
+
+document.getElementById("reply").textContent=
+
+"You asked: "+q+"\n\nJarvis interface is working. Connect an AI API to enable intelligent answers.";
+
+}
+
+</script>
+
+</body>
+
+</html>
